@@ -1,0 +1,151 @@
+:root{
+  --bg:#0b0b0b;
+  --fg:#f4f4f4;
+  --sub:#9a9a9a;
+  --accent:#4fd1c5;
+}
+
+*{box-sizing:border-box;}
+
+body{
+  margin:0;
+  font-family:Inter, system-ui, sans-serif;
+  color:var(--fg);
+  background:
+    radial-gradient(#1c1c1c 1px, transparent 1px);
+  background-size:24px 24px;
+  background-color:var(--bg);
+  overflow-x:hidden;
+}
+
+/* ===== Hero ===== */
+.hero{
+  padding:140px 40px 120px;
+  text-align:center;
+}
+
+.particle-text{
+  display:inline-flex;
+  gap:10px;
+  cursor:pointer;
+}
+
+.particle-text span{
+  font-size:3.2rem;
+  font-weight:700;
+  transition:transform .6s cubic-bezier(.2,.8,.2,1),
+             opacity .6s ease;
+}
+
+/* 拡散方向 */
+.particle-text span{
+  --x:0px; --y:0px;
+}
+.particle-text span:nth-child(odd){--x:40px;--y:-30px;}
+.particle-text span:nth-child(even){--x:-40px;--y:30px;}
+
+.particle-text:hover span{
+  transform:translate(var(--x),var(--y));
+  opacity:.6;
+}
+
+#typed{
+  margin-top:20px;
+  color:var(--sub);
+  letter-spacing:.05em;
+  min-height:1.4em;
+}
+
+/* ===== Layout ===== */
+main{
+  max-width:1100px;
+  margin:auto;
+  padding:0 40px;
+}
+
+section{
+  margin-bottom:120px;
+}
+
+h2{
+  font-size:1.6rem;
+  margin-bottom:30px;
+}
+
+h2::after{
+  content:"";
+  display:block;
+  width:48px;
+  height:3px;
+  background:var(--accent);
+  margin-top:10px;
+}
+
+/* ===== Experience ===== */
+.timeline{
+  list-style:none;
+  padding:0;
+}
+
+.timeline li{
+  margin-bottom:22px;
+  opacity:0;
+  transform:translateY(30px);
+  transition:.8s ease;
+  color:var(--sub);
+}
+
+.timeline li.show{
+  opacity:1;
+  transform:none;
+}
+
+.timeline span{
+  color:var(--fg);
+  margin-right:12px;
+}
+
+/* ===== Works ===== */
+.works{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:36px;
+}
+
+.work{
+  background:#141414;
+  padding:16px;
+  border-radius:14px;
+  animation:float 6s ease-in-out infinite;
+  transition:transform .4s ease, box-shadow .4s ease;
+  transform-style:preserve-3d;
+}
+
+.work:hover{
+  transform:rotateX(8deg) rotateY(-8deg) translateY(-10px);
+  box-shadow:0 30px 50px rgba(0,0,0,.5);
+}
+
+.work img{
+  width:100%;
+  border-radius:10px;
+  margin-bottom:12px;
+}
+
+.work p{
+  font-size:.9rem;
+  color:var(--sub);
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-8px);}
+}
+
+/* ===== Footer ===== */
+footer{
+  text-align:center;
+  padding:60px;
+  font-size:.8rem;
+  color:var(--sub);
+}

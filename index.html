@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- favicon -->
+<link rel="icon" href="./images/web.png" type="image/png">
+<link rel="apple-touch-icon" href="./images/web.png">
+
+<style>
+:root{
+  --bg:#0b0b0b;
+  --fg:#f4f4f4;
+  --sub:#9a9a9a;
+  --accent:#4fd1c5;
+}
+
+*{box-sizing:border-box;}
+
+body{
+  margin:0;
+  font-family:Inter, system-ui, sans-serif;
+  background:var(--bg);
+  color:var(--fg);
+  overflow-x:hidden;
+}
+
+/* ===== 背景（テトリス風） ===== */
+#bg{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+}
+
+/* ===== Hero ===== */
+.hero{
+  padding:140px 40px 120px;
+  text-align:center;
+}
+
+.particle-text{
+  display:inline-flex;
+  gap:10px;
+  cursor:pointer;
+}
+
+.particle-text span{
+  font-size:3.2rem;
+  font-weight:700;
+  display:inline-block;
+  transition:
+    transform .7s cubic-bezier(.2,.8,.2,1),
+    opacity .7s ease;
+}
+
+#typed{
+  margin-top:18px;
+  color:var(--sub);
+  letter-spacing:.05em;
+  min-height:1.4em;
+}
+
+/* ===== Layout ===== */
+main{
+  max-width:1200px;
+  margin:auto;
+  padding:0 40px;
+}
+
+section{
+  margin-bottom:140px;
+}
+
+h2{
+  font-size:1.7rem;
+  margin-bottom:60px;
+}
+
+h2::after{
+  content:"";
+  display:block;
+  width:50px;
+  height:3px;
+  background:var(--accent);
+  margin-top:12px;
+}
+
+/* ===== Internship Comment ===== */
+.comment{
+  max-width:900px;
+  color:var(--sub);
+  font-size:1rem;
+  line-height:1.9;
+  border-left:3px solid var(--accent);
+  padding-left:20px;
+}
+
+/* ===== Skills ===== */
+.skill-timeline{
+  display:grid;
+  gap:80px;
+  max-width:900px;
+}
+
+.skill-block{
+  padding-left:24px;
+  border-left:3px solid rgba(79,209,197,.3);
+}
+
+.skill-time{
+  color:var(--accent);
+  font-size:.9rem;
+  letter-spacing:.05em;
+  margin-bottom:14px;
+}
+
+.skill-desc{
+  color:var(--sub);
+  font-size:.95rem;
+  line-height:1.8;
+  margin-bottom:20px;
+}
+
+.skill-tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.skill-tags span{
+  padding:6px 12px;
+  font-size:.75rem;
+  border-radius:999px;
+  background:rgba(255,255,255,.06);
+  color:#ddd;
+  transition:.3s ease;
+}
+
+.skill-tags span:hover{
+  background:rgba(79,209,197,.15);
+  color:var(--accent);
+  transform:translateY(-3px);
+}
+
+/* ===== Timeline ===== */
+.timeline{
+  display:flex;
+  flex-direction:column;
+  gap:120px;
+  position:relative;
+}
+
+.timeline::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:0;
+  bottom:0;
+  width:1px;
+  background:rgba(255,255,255,.08);
+}
+
+.entry{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+  gap:60px;
+  opacity:0;
+  transform:translateY(40px);
+  transition:.8s ease;
+}
+
+.entry.show{
+  opacity:1;
+  transform:none;
+}
+
+.entry:nth-child(even){
+  direction:rtl;
+}
+.entry:nth-child(even) *{
+  direction:ltr;
+}
+
+.entry img{
+  width:100%;
+  border-radius:18px;
+}
+
+.entry-content{
+  max-width:460px;
+}
+
+.entry-content .time{
+  font-size:.85rem;
+  color:var(--accent);
+  margin-bottom:10px;
+}
+
+.entry-content h3{
+  margin:0 0 14px;
+  font-size:1.2rem;
+}
+
+.entry-content p{
+  font-size:.95rem;
+  color:var(--sub);
+  line-height:1.8;
+}
+
+footer{
+  text-align:center;
+  padding:60px;
+  font-size:.8rem;
+  color:var(--sub);
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="bg"></canvas>
+
+<header class="hero">
+  <div class="particle-text" id="title">
+    <span>P</span><span>O</span><span>R</span><span>T</span><span>F</span>
+    <span>O</span><span>L</span><span>I</span><span>O</span>
+  </div>
+  <div id="typed"></div>
+</header>
+
+<main>
+
+<section>
+<h2>About This Portfolio</h2>
+<p class="comment">
+このサイトでは、大学在学中に取り組んだ制作・学習内容を時系列で整理し、
+「何をどの文脈で学び、どう応用してきたか」を可視化することを目的として制作しました。
+
+開発面ではまだまだ未熟で経験も少ないですが、今後も
+</p>
+</section>
+
+<section>
+<h2>Skills & Learning</h2>
+
+<div class="skill-timeline">
+
+  <div class="skill-block">
+    <div class="skill-time">1年 秋｜Data Analysis</div>
+    <p class="skill-desc">
+      R/stata/Pythonを中心に学習。
+      データから意味を読み取り、分析する力を養った。
+    </p>
+    <div class="skill-tags">
+      <span>Python</span><span>R</span><span>Stata</span>
+      <span>Jupyter Notebook</span><span>R</span><span>StataNow / SE</span>
+    </div>
+  </div>
+
+  <div class="skill-block">
+    <div class="skill-time">2年 春｜Database / Backend</div>
+    <p class="skill-desc">
+      UIUXやGISをサイトを作りながら学習。
+      ユーザーが使いやすいデザインを意識して作成。
+    </p>
+    <div class="skill-tags">
+      <span>MySQL</span><span>Docker Desktop</span>
+      <span>VS Code</span><span>JavaScript</span><span>Github</span><span>UIUX</span><span>GIS</span>
+    </div>
+  </div>
+
+  <div class="skill-block">
+    <div class="skill-time">2年 秋｜Design / Web</div>
+    <p class="skill-desc">
+      グラフィックデザインやデータベースの基礎を学習。
+      Adobeを使用した動画編集や画像編集を経験。
+    </p>
+    <div class="skill-tags">
+      <span>Tableau</span><span>MySQL</span><span>blender</span><span>Adobe</span>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<section>
+<h2>Works</h2>
+
+<div class="timeline">
+
+  <div class="entry">
+    <img src="./images/blender-human.png">
+    <div class="entry-content">
+      <div class="time">1年 春｜Blender</div>
+      <h3>人物モデリング</h3>
+      <p>学園祭での出し物で3Dキャラクターを制作。</p>
+    </div>
+  </div>
+
+  <div class="entry">
+    <img src="./images/gis-dog-map.png">
+    <div class="entry-content">
+      <div class="time">2年 春｜GIS / Web</div>
+      <h3>犬の原産国マップ</h3>
+      <p>GISを用いたデータ可視化とWeb表現。</p>
+    </div>
+  </div>
+
+  <div class="entry">
+    <img src="./images/learning-site.png">
+    <div class="entry-content">
+      <div class="time">2年 春｜UI / UX</div>
+      <h3>学習支援サイト</h3>
+      <p>工学部内で学習経験がない学生向けの学習サイトを作成。</p>
+    </div>
+  </div>
+
+  <div class="entry">
+    <img src="./images/blender2.png">
+    <div class="entry-content">
+      <div class="time">2年 春｜Blender</div>
+      <h3>お菓子の家をモデリング</h3>
+      <p>ポップでカラフルな世界観を意識し、キャンディやクッキーをモチーフにしたお菓子の家を3Dモデリング。</p>
+    </div>
+  </div>
+
+</div>
+</section>
+
+</main>
+
+<footer>© 2026 Portfolio</footer>
+
+<script>
+/* タイプライター */
+const text="Information Systems Engineering / Undergraduate";
+let i=0;
+const typed=document.getElementById("typed");
+(function type(){
+  if(i<text.length){
+    typed.textContent+=text[i++];
+    setTimeout(type,55);
+  }
+})();
+
+/* タイトル散開（ランダム） */
+const title=document.getElementById("title");
+title.addEventListener("mouseenter",()=>{
+  title.querySelectorAll("span").forEach(l=>{
+    const x=(Math.random()-.5)*140;
+    const y=(Math.random()-.5)*140;
+    const r=(Math.random()-.5)*30;
+    l.style.transform=`translate(${x}px,${y}px) rotate(${r}deg)`;
+    l.style.opacity=.6;
+  });
+});
+title.addEventListener("mouseleave",()=>{
+  title.querySelectorAll("span").forEach(l=>{
+    l.style.transform="translate(0,0) rotate(0)";
+    l.style.opacity=1;
+  });
+});
+
+/* スクロール表示 */
+const io=new IntersectionObserver(e=>{
+  e.forEach(v=>{
+    if(v.isIntersecting) v.target.classList.add("show");
+  });
+},{threshold:.25});
+document.querySelectorAll(".entry").forEach(e=>io.observe(e));
+
+/* テトリス風背景 */
+const canvas=document.getElementById("bg");
+const ctx=canvas.getContext("2d");
+let w,h;
+function resize(){
+  w=canvas.width=innerWidth;
+  h=canvas.height=innerHeight;
+}
+resize();
+addEventListener("resize",resize);
+
+const blocks=[];
+const size=24;
+function spawn(){
+  blocks.push({
+    x:Math.floor(Math.random()*w/size)*size,
+    y:-size,
+    speed:.3,
+    a:.06
+  });
+}
+(function draw(){
+  ctx.clearRect(0,0,w,h);
+  blocks.forEach(b=>{
+    b.y+=b.speed;
+    ctx.fillStyle=`rgba(79,209,197,${b.a})`;
+    ctx.fillRect(b.x,b.y,size,size);
+  });
+  for(let i=blocks.length-1;i>=0;i--){
+    if(blocks[i].y>h) blocks.splice(i,1);
+  }
+  if(Math.random()<.02) spawn();
+  requestAnimationFrame(draw);
+})();
+</script>
+
+</body>
+</html>
