@@ -216,6 +216,37 @@ footer{
   font-size:.8rem;
   color:var(--sub);
 }
+
+.work-link{
+  display:inline-block;
+  margin-top:18px;
+  font-size:.85rem;
+  letter-spacing:.08em;
+  color:var(--accent);
+  text-decoration:none;
+  position:relative;
+  transition:.3s ease;
+}
+
+.work-link::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-4px;
+  width:0;
+  height:1px;
+  background:var(--accent);
+  transition:.3s ease;
+}
+
+.work-link:hover{
+  transform:translateX(4px);
+}
+
+.work-link:hover::after{
+  width:100%;
+}
+
 </style>
 </head>
 
@@ -241,7 +272,7 @@ footer{
 このサイトでは、大学在学中に取り組んだ制作・学習内容を時系列で整理し、
 「何をどの文脈で学び、どう応用してきたか」を可視化することを目的として制作しました。
 
-開発面ではまだまだ未熟で経験も少ないですが、今後も
+開発面ではまだまだ未熟で経験も少ないですが、実装を視野に入れたアプリ・システム開発を目標に頑張ります。
 </p>
 </section>
 
@@ -302,23 +333,39 @@ footer{
     </div>
   </div>
 
-  <div class="entry">
-    <img src="./images/gis-dog-map.png">
-    <div class="entry-content">
-      <div class="time">2年 春｜GIS / Web</div>
-      <h3>犬の原産国マップ</h3>
-      <p>GISを用いたデータ可視化とWeb表現。</p>
-    </div>
-  </div>
+<div class="entry">
+  <img src="./images/gis-dog-map.png">
+  <div class="entry-content">
+    <div class="time">2年 春｜GIS / Web</div>
+    <h3>犬の原産国マップ</h3>
+    <p>GISを用いて犬の種類ごとの原産国と特長、派生元を可視化。</p>
 
-  <div class="entry">
-    <img src="./images/learning-site.png">
-    <div class="entry-content">
-      <div class="time">2年 春｜UI / UX</div>
-      <h3>学習支援サイト</h3>
-      <p>工学部内で学習経験がない学生向けの学習サイトを作成。</p>
-    </div>
+    <a class="work-link"
+       href="https://nnnnnnnn000000.github.io/gis/week06/"
+       target="_blank" rel="noopener">
+       View Project →
+    </a>
   </div>
+</div>
+
+<div class="entry">
+  <img src="./images/learning-site.png">
+  <div class="entry-content">
+    <div class="time">2年 春｜UI / UX</div>
+    <h3>学習支援サイト</h3>
+    <p>
+      工学部内で学習経験がない学生向けの学習サイトを作成。
+      今後は複数人での開発を想定。
+    </p>
+
+    <a class="work-link"
+       href="https://nnnnnnnn000000.github.io/UIUX/home.html"
+       target="_blank" rel="noopener">
+       View Project →
+    </a>
+  </div>
+</div>
+
 
   <div class="entry">
     <img src="./images/blender2.png">
@@ -408,6 +455,7 @@ function spawn(){
   if(Math.random()<.02) spawn();
   requestAnimationFrame(draw);
 })();
+
 </script>
 
 </body>
